@@ -1,47 +1,53 @@
-#Escriba un programa que entregue la edad del usuario a partir de su fecha de nacimiento:
+#El joven periodista Solarrabietas debe relatar un partido de tenis, pero no conoce las reglas del deporte. En particular, no ha logrado aprender cómo saber si un set ya terminó, y quién lo ganó.
 
-#Ingrese su fecha de nacimiento.
-#Dia: 14
-#Mes: 6
-#Anno: 1948
-#Usted tiene 62 annos
-#Por supuesto, el resultado entregado depende del día en que su programa será ejecutado.
+#Un partido de tenis se divide en sets. Para ganar un set, un jugador debe ganar 6 juegos, pero además debe haber ganado por lo menos dos juegos más que su rival. Si el set está empatado a 5 juegos, el ganador es el primero que llegue a 7. Si el set está empatado a 6 juegos, el set se define en un último juego, en cuyo caso el resultado final es 7-6.
 
-#Para obtener la fecha actual, puede hacerlo usando la función localtime que viene en el módulo time. Los valores se obtienen de la siguiente manera (suponiendo que hoy es 11 de marzo de 2011):
+#Sabiendo que el jugador A ha ganado m juegos, y el jugador B, n juegos, al periodista le gustaría saber:
 
-#>>> from time import localtime
-#>>> t = localtime()
-#>>> t.tm_mday
-#11
-#>>> t.tm_mon
-#3
-#>>> t.tm_year
-#2011
-#El programa debe tener en cuenta si el cumpleaños ingresado ya pasó durante este año, o si todavía no ocurre.
+#si A ganó el set, o
+#si B ganó el set, o
+#si el set todavía no termina, o
+#si el resultado es inválido (por ejemplo, 8-6 o 7-3).
+#Desarrolle un programa que solucione el problema de Solarrabietas:
+
+#Juegos ganados por A: 4
+#Juegos ganados por B: 5
+#Aun no termina
+#Juegos ganados por A: 5
+#Juegos ganados por B: 7
+#Gano B
+#Juegos ganados por A: 5
+#Juegos ganados por B: 6
+#Aun no termina
+#Juegos ganados por A: 3
+#Juegos ganados por B: 7
+#Invalido
+#Juegos ganados por A: 6
+#Juegos ganados por B: 4
+#Gano A
 
 
 
+# Programa para determinar el estado de un set de tenis
 
-# Importar la función localtime para obtener la fecha actual
-from time import localtime
+# Solicitar la cantidad de juegos ganados por A y B
+juegos_A = int(input("Juegos ganados por A: "))
+juegos_B = int(input("Juegos ganados por B: "))
 
-# Solicitar la fecha de nacimiento del usuario
-dia_nac = int(input("Dia: "))
-mes_nac = int(input("Mes: "))
-anno_nac = int(input("Anno: "))
-
-# Obtener la fecha actual
-t = localtime()
-dia_actual = t.tm_mday
-mes_actual = t.tm_mon
-anno_actual = t.tm_year
-
-# Calcular la edad inicial
-edad = anno_actual - anno_nac
-
-# Ajustar la edad si el cumpleaños aún no ha pasado en el año actual
-if (mes_actual < mes_nac) or (mes_actual == mes_nac and dia_actual < dia_nac):
-    edad -= 1
-
-# Mostrar la edad calculada
-print(f"Usted tiene {edad} annos")
+# Verificar si el resultado es válido y determinar el estado del set
+if juegos_A > 7 or juegos_B > 7:
+    print("Invalido")
+elif (juegos_A == 7 and juegos_B < 5) or (juegos_B == 7 and juegos_A < 5):
+    print("Invalido")
+elif juegos_A == 6 and juegos_B == 6:
+    print("Aun no termina")
+elif juegos_A == 7 and juegos_B == 6:
+    print("Gano A")
+elif juegos_B == 7 and juegos_A == 6:
+    print("Gano B")
+elif juegos_A == 6 and juegos_B <= 4:
+    print("Gano A")
+elif juegos_B == 6 and juegos_A <= 4:
+    print("Gano B")
+else:
+    print("Aun no termina")
