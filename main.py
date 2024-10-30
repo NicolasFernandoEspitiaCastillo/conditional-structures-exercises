@@ -1,31 +1,63 @@
-#Escriba un programa que determine si un caracter ingresado es letra, número, o ninguno de los dos. En caso que sea letra, determine si es mayúscula o minúscula.
+#Escriba un programa que simule una calculadora básica, este puede realizar operación de suma, resta, multiplicación y división.
 
-#Ingrese caracter: 9
-#Es numero.
-#Ingrese caracter: A
-#Es letra mayúscula.
-#Ingrese caracter: f
-#Es letra minúscula.
-#Ingrese caracter: #
-#No es letra ni número.#
+#El programa debe recibir como entrada 2 números reales y un operador, que puede ser +, -, * o /.
+
+#La salida del programa debe ser el resultado de la operación.
+
+#Operando: 3
+#Operador: +
+#Operando: 2
+#3 + 2 = 5
+#Operando: 6
+#Operador: -
+#Operando: 7
+#6 - 7 = -1
+#Operando: 4
+#Operador: *
+#Operando: 5
+#4 * 5 = 20
+#Operando: 10
+#Operador: /
+#Operando: 4
+#10 / 4 = 2.5
+#Operando: -1
+#Operador: **
+#Operando: 4
+#-1 ** 4 = 1
 
 
 
 
-# Programa para determinar el tipo de carácter ingresado
 
-# Solicitar al usuario que ingrese un carácter
-caracter = input("Ingrese caracter: ")
+# Programa para una calculadora básica
 
-# Verificar si el carácter es una letra
-if caracter.isalpha():
-    if caracter.isupper():
-        print("Es letra mayúscula.")
+# Solicitar el primer operando
+operando1 = float(input("Operando: "))
+# Solicitar el operador
+operador = input("Operador: ")
+# Solicitar el segundo operando
+operando2 = float(input("Operando: "))
+
+# Inicializar la variable para el resultado
+resultado = None
+
+# Realizar la operación según el operador ingresado
+if operador == '+':
+    resultado = operando1 + operando2
+elif operador == '-':
+    resultado = operando1 - operando2
+elif operador == '*':
+    resultado = operando1 * operando2
+elif operador == '/':
+    if operando2 != 0:
+        resultado = operando1 / operando2
     else:
-        print("Es letra minúscula.")
-# Verificar si el carácter es un número
-elif caracter.isdigit():
-    print("Es numero.")
-# Si no es ni letra ni número
+        print("Error: División por cero.")
+elif operador == '**':
+    resultado = operando1 ** operando2
 else:
-    print("No es letra ni número.")
+    print("Operador no válido.")
+
+# Mostrar el resultado si la operación fue válida
+if resultado is not None:
+    print(f"{operando1} {operador} {operando2} = {resultado}")
