@@ -1,43 +1,35 @@
-#Los tres lados a, b y c de un triángulo deben satisfacer la desigualdad triangular: cada uno de los lados no puede ser más largo que la suma de los otros dos.
+#El riesgo de que una persona sufra enfermedades coronarias depende de su edad y su índice de masa corporal:
 
-#Escriba un programa que reciba como entrada los tres lados de un triángulo, e indique:
+ 	#edad < 45	edad ≥ 45
+#IMC < 22.0	bajo	medio
+#IMC ≥ 22.0	medio	alto
+#El índice de masa corporal es el cuociente entre el peso del individuo en kilos y el cuadrado de su estatura en metros.
 
-#si acaso el triángulo es inválido; y
-#si no lo es, qué tipo de triángulo es.
-#Ingrese a: 3.9
-#Ingrese b: 6.0
-#Ingrese c: 1.2
-#No es un triangulo valido.
-#Ingrese a: 1.9
-#Ingrese b: 2
-#Ingrese c: 2
-#El triangulo es isoceles.
-#Ingrese a: 3.0
-#Ingrese b: 5.0
-#Ingrese c: 4.0
-#El triangulo es escaleno.
+#Escriba un programa que reciba como entrada la estatura, el peso y la edad de una persona, y le entregue su condición de riesgo.
 
 
 
+# Programa para calcular el riesgo de enfermedades coronarias
 
+# Solicitar al usuario su estatura en metros, peso en kilos y edad
+estatura = float(input("Ingrese su estatura en metros: "))
+peso = float(input("Ingrese su peso en kilos: "))
+edad = int(input("Ingrese su edad en años: "))
 
-# Programa para verificar si tres lados forman un triángulo válido y determinar su tipo
+# Calcular el índice de masa corporal (IMC)
+imc = peso / (estatura ** 2)
 
-# Solicitar al usuario que ingrese los tres lados del triángulo
-a = float(input("Ingrese a: "))
-b = float(input("Ingrese b: "))
-c = float(input("Ingrese c: "))
-
-# Verificar si cumple la desigualdad triangular para ser un triángulo válido
-if (a + b > c) and (a + c > b) and (b + c > a):
-    # Si los tres lados son iguales, es un triángulo equilátero
-    if a == b == c:
-        print("El triangulo es equilatero.")
-    # Si dos lados son iguales, es un triángulo isósceles
-    elif a == b or a == c or b == c:
-        print("El triangulo es isoceles.")
-    # Si todos los lados son diferentes, es un triángulo escaleno
+# Determinar el nivel de riesgo basado en IMC y edad
+if edad < 45:
+    if imc < 22.0:
+        riesgo = "bajo"
     else:
-        print("El triangulo es escaleno.")
+        riesgo = "medio"
 else:
-    print("No es un triangulo valido.")
+    if imc < 22.0:
+        riesgo = "medio"
+    else:
+        riesgo = "alto"
+
+# Mostrar el resultado del riesgo
+print(f"Su condición de riesgo es: {riesgo}")
