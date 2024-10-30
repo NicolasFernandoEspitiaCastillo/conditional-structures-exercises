@@ -1,36 +1,31 @@
-#Escriba un programa que reciba como entrada dos números, y los muestre ordenados de menor a mayor:
+#Escriba un programa que determine si un caracter ingresado es letra, número, o ninguno de los dos. En caso que sea letra, determine si es mayúscula o minúscula.
 
-#Ingrese numero: 51
-#Ingrese numero: 24
-#24 51
-#A continuación, escriba otro programa que haga lo mismo con tres números:
-
-#Ingrese numero: 8
-#Ingrese numero: 1
-#Ingrese numero: 4
-#1 4 8
-#Finalmente, escriba un tercer programa que ordene cuatro números:
-
-#Ingrese numero: 7
-#Ingrese numero: 0
-#Ingrese numero: 6
-#Ingrese numero: 1
-#0 1 6 7
-#Recuerde que su programa debe entregar la solución correcta para cualquier combinación de números, no sólo para los ejemplos mostrados aquí.
-
-#Hay más de una manera de resolver cada ejercicio.
+#Ingrese caracter: 9
+#Es numero.
+#Ingrese caracter: A
+#Es letra mayúscula.
+#Ingrese caracter: f
+#Es letra minúscula.
+#Ingrese caracter: #
+#No es letra ni número.#
 
 
 
-# Programa para ordenar cuatro números
 
-# Solicitar al usuario que ingrese cuatro números
-numero1 = int(input("Ingrese numero: "))
-numero2 = int(input("Ingrese numero: "))
-numero3 = int(input("Ingrese numero: "))
-numero4 = int(input("Ingrese numero: "))
+# Programa para determinar el tipo de carácter ingresado
 
-# Ordenar y mostrar los números
-numeros = [numero1, numero2, numero3, numero4]
-numeros.sort()
-print(*numeros)  # El asterisco (*) descompone la lista para imprimir los elementos
+# Solicitar al usuario que ingrese un carácter
+caracter = input("Ingrese caracter: ")
+
+# Verificar si el carácter es una letra
+if caracter.isalpha():
+    if caracter.isupper():
+        print("Es letra mayúscula.")
+    else:
+        print("Es letra minúscula.")
+# Verificar si el carácter es un número
+elif caracter.isdigit():
+    print("Es numero.")
+# Si no es ni letra ni número
+else:
+    print("No es letra ni número.")
