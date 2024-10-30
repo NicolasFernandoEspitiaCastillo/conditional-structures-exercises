@@ -1,63 +1,47 @@
-#Escriba un programa que simule una calculadora básica, este puede realizar operación de suma, resta, multiplicación y división.
+#Escriba un programa que entregue la edad del usuario a partir de su fecha de nacimiento:
 
-#El programa debe recibir como entrada 2 números reales y un operador, que puede ser +, -, * o /.
+#Ingrese su fecha de nacimiento.
+#Dia: 14
+#Mes: 6
+#Anno: 1948
+#Usted tiene 62 annos
+#Por supuesto, el resultado entregado depende del día en que su programa será ejecutado.
 
-#La salida del programa debe ser el resultado de la operación.
+#Para obtener la fecha actual, puede hacerlo usando la función localtime que viene en el módulo time. Los valores se obtienen de la siguiente manera (suponiendo que hoy es 11 de marzo de 2011):
 
-#Operando: 3
-#Operador: +
-#Operando: 2
-#3 + 2 = 5
-#Operando: 6
-#Operador: -
-#Operando: 7
-#6 - 7 = -1
-#Operando: 4
-#Operador: *
-#Operando: 5
-#4 * 5 = 20
-#Operando: 10
-#Operador: /
-#Operando: 4
-#10 / 4 = 2.5
-#Operando: -1
-#Operador: **
-#Operando: 4
-#-1 ** 4 = 1
+#>>> from time import localtime
+#>>> t = localtime()
+#>>> t.tm_mday
+#11
+#>>> t.tm_mon
+#3
+#>>> t.tm_year
+#2011
+#El programa debe tener en cuenta si el cumpleaños ingresado ya pasó durante este año, o si todavía no ocurre.
 
 
 
 
+# Importar la función localtime para obtener la fecha actual
+from time import localtime
 
-# Programa para una calculadora básica
+# Solicitar la fecha de nacimiento del usuario
+dia_nac = int(input("Dia: "))
+mes_nac = int(input("Mes: "))
+anno_nac = int(input("Anno: "))
 
-# Solicitar el primer operando
-operando1 = float(input("Operando: "))
-# Solicitar el operador
-operador = input("Operador: ")
-# Solicitar el segundo operando
-operando2 = float(input("Operando: "))
+# Obtener la fecha actual
+t = localtime()
+dia_actual = t.tm_mday
+mes_actual = t.tm_mon
+anno_actual = t.tm_year
 
-# Inicializar la variable para el resultado
-resultado = None
+# Calcular la edad inicial
+edad = anno_actual - anno_nac
 
-# Realizar la operación según el operador ingresado
-if operador == '+':
-    resultado = operando1 + operando2
-elif operador == '-':
-    resultado = operando1 - operando2
-elif operador == '*':
-    resultado = operando1 * operando2
-elif operador == '/':
-    if operando2 != 0:
-        resultado = operando1 / operando2
-    else:
-        print("Error: División por cero.")
-elif operador == '**':
-    resultado = operando1 ** operando2
-else:
-    print("Operador no válido.")
+# Ajustar la edad si el cumpleaños aún no ha pasado en el año actual
+if (mes_actual < mes_nac) or (mes_actual == mes_nac and dia_actual < dia_nac):
+    edad -= 1
 
-# Mostrar el resultado si la operación fue válida
-if resultado is not None:
-    print(f"{operando1} {operador} {operando2} = {resultado}")
+# Mostrar la edad calculada
+print(f"Usted tiene {edad} annos")
